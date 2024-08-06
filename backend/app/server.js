@@ -12,9 +12,9 @@ app.use(express.json())
 const db = {
     host : '54.173.126.116',
     port : 3306,
-    user : '00000000000',
-    password : '00000000000',
-    database : '00000000000'
+    user : 'tet-clibot',
+    password : 'clibotet',
+    database : 'tet-clibot'
 }
 
 const execSQLQuery = (sqlQry, id, res) => {
@@ -56,19 +56,19 @@ app.put('/update/:id', (req,res)=>{
 
 app.delete('/delete/:id', (req,res)=>{
   const id = [req.params.id];
-  execSQLQuery('DELETE FROM usuario WHERE usu_id=?',id,res);
+  execSQLQuery('DELETE FROM paciente WHERE cpf=?',id,res);
 })
 
 app.get('/usuesp/:id', (req,res)=>{
   const id=[req.params.id];
-  execSQLQuery('SELECT * FROM usuario WHERE usu_id=?',id,res);
+  execSQLQuery('SELECT * FROM paciente WHERE cpf=?',id,res);
 })
 
 
 
 app.get('/usuarios', (req, res) =>{
     const id = []
-    execSQLQuery("SELECT * from usuario", id, res)
+    execSQLQuery("SELECT * from paciente", id, res)
 })
 
 app.post('/usuario', (req, res) =>{
