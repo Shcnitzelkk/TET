@@ -7,7 +7,7 @@ const CadastroUsuario = ({navigation}) =>{
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [cpf, setCpf] = useState('');
 
   const Cadastrar = () =>{
   var userObj = {nome:nome, email: email, senha:senha};

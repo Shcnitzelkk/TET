@@ -3,14 +3,14 @@ import{SafeAreaView,StyleSheet,TextInput, Text, TouchableOpacity, View, Button, 
 
 export function LoginUsuario({navigation}){
 
+  const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
   const [mensagem, setMensagem] = useState('');
   const image = {uri: 'https://mfiles.alphacoders.com/987/987568.jpg'};
 
   const verificarLogin = () => {
   console.log("teste")
-    var userObj = { email:email, senha:senha };
+    var userObj = { cpf:cpf, email:email };
     var jsonBody = JSON.stringify(userObj);
     console.log(jsonBody)
     fetch('https://tet-matheusazevedo.glitch.me/login', {
@@ -43,9 +43,9 @@ export function LoginUsuario({navigation}){
         }}
     />
     </View>
-    <TextInput style={styles.input} placeholder="E-mail" onChangeText={(event )=>setEmail(event)}/>
-    <TextInput style={styles.input} placeholder="Senha" keyboardType="numeric" onChangeText={(event )=>setSenha(event)}/>
-    <SafeAreaView style={styles.container}>
+    <TextInput style={styles.input} placeholder="CPF" keyboardType="numeric" onChangeText={(event )=>setEmail(event)}/>
+    <TextInput style={styles.input} placeholder="Email" onChangeText={(event )=>setSenha(event)}/>
+    <SafeAreaView>
     <View style={styles.fixToText}>
       <Button
         title="Logar"
