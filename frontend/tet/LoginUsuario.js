@@ -13,7 +13,7 @@ export function LoginUsuario({navigation}){
     var userObj = { cpf:cpf, email:email };
     var jsonBody = JSON.stringify(userObj);
     console.log(jsonBody)
-    fetch('https://tet-matheusazevedo.glitch.me/login', {
+    fetch('http://localhost:3000/login', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json',
@@ -43,8 +43,8 @@ export function LoginUsuario({navigation}){
         }}
     />
     </View>
-    <TextInput style={styles.input} placeholder="CPF" keyboardType="numeric" onChangeText={(event )=>setEmail(event)}/>
-    <TextInput style={styles.input} placeholder="Email" onChangeText={(event )=>setSenha(event)}/>
+    <TextInput style={styles.input} placeholder="CPF" keyboardType="numeric" onChangeText={(event )=>setCpf(event)}/>
+    <TextInput style={styles.input} placeholder="Email" onChangeText={(event )=>setEmail(event)}/>
     <SafeAreaView>
     <View style={styles.fixToText}>
       <Button
