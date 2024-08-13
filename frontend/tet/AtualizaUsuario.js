@@ -5,14 +5,15 @@ const AtualizaUsuario = ({navigation, route}) =>{
   /*const [text,onChangeText]= React.useState('E-mail');
   const[number,onChangeNumber] = React.useState('');*/
 
+  const [cpf, setCpf] = useState('');
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [endereco, setEndereco] = useState('');
 
   const {idUsuario}=route.params
   useEffect(() => {
     async function fetchItem() {
-      fetch('https://tet-matheusazevedo.glitch.me/usuesp/'+idUsuario,{
+      fetch('http://localhost:3000/usuesp/'+idUsuario,{
       headers: {
         'Content-Type': 'application/json',
       }
@@ -29,10 +30,10 @@ const AtualizaUsuario = ({navigation, route}) =>{
     }, []);
 
   const Atualizar = () =>{
-  var userObj = {nome:nome, email: email, senha:senha};
+  var userObj = {cpf:cpf, fk_plano_saude_id_plano_saude:fk_plano_saude_id_plano_saude, nome:nome, telefone:telefone, email:email, endereco:endereco};
   var jsonBody = JSON.stringify(userObj);
   console.log(jsonBody);
-  fetch('https://tet-matheusazevedo.glitch.me/update/'+idUsuario, {
+  fetch('http://localhost:3000/update/'+idUsuario, {
   method: 'PUT',
   headers: {
   'Content-Type': 'application/json',
@@ -51,7 +52,7 @@ const AtualizaUsuario = ({navigation, route}) =>{
   }
 
   const Deletar = () =>{
-    fetch('https://tet-matheusazevedo.glitch.me/delete/'+idUsuario, {
+    fetch('http://localhost:3000/delete/'+idUsuario, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -72,11 +73,15 @@ const AtualizaUsuario = ({navigation, route}) =>{
 
   return(
     <View>
+    <TextInput style={styles.input} value={cpf} placeholder="CPF"
+    onChangeText={(event)=> setCpf(event)} />
     <TextInput style={styles.input} value={nome} placeholder="Nome"
     onChangeText={(event)=> setNome(event)} />
     <TextInput style={styles.input} value={email} placeholder="E-mail" 
     onChangeText={(event)=> setEmail(event)} />
-    <TextInput style={styles.input} placeholder="Senha" onChangeText={(event)=> setSenha(event)}  />
+    <TextInput style={styles.input} placeholder="Endereco" 
+    onChangeText={(event)=> setEndereco(event)}  />
+    
 
     <SafeAreaView style={styles.container}>
     <View style={styles.fixToText}>
