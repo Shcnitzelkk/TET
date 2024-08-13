@@ -50,8 +50,8 @@ app.get('/', (req, res) =>{
 
 
 app.put('/update/:id', (req,res)=>{
-    const id = [req.body.email,req.body.nome,req.body.senha,req.params.id];
-    execSQLQuery('UPDATE usuario SET usu_email=?,usu_nome=?,usu_senha=? WHERE usu_id=?', id, res);
+    const id = [req.body.cpf, req.body.fk_plano_saude_id_plano_saude, req.body.nome, req.body.telefone, req.body.email, req.body.endereco];
+    execSQLQuery('UPDATE usuario SET cpf=?,fk_plano_saude_id_plano_saude=?,nome=?,telefone=?,email=?, endereco=? WHERE cpf=?', id, res);
 })
 
 app.delete('/delete/:id', (req,res)=>{
@@ -72,15 +72,15 @@ app.get('/usuarios', (req, res) =>{
 })
 
 app.post('/usuario', (req, res) =>{
-    const id = [req.body.nome, req.body.email, req.body.senha]
-    execSQLQuery("INSERT INTO usuario VALUES (null,?,?,?)", id, res)
+    const id = [req.body.cpf, req.body.fk_plano_saude_id_plano_saude, req.body.nome, req.body.telefone, req.body.email, req.body.endereco]
+    execSQLQuery("INSERT INTO paciente VALUES (?,?,?,?,?,?)", id, res)
 })
 
 app.post('/login', async (req,res)=>{
-  const id = [req.body.email, req.body.senha];
-  let [result] = await resultSQLQuery('SELECT * FROM usuario WHERE usu_email=? and usu_senha=?',id);
+  const id = [req.body.cpf, req.body.email];
+  let [result] = await resultSQLQuery('SELECT * FROM paciente WHERE cpf=? and email=?',id);
   if(result)
-    res.json({"mensagem": "Olá, seja bem vindo "+result.usu_nome, "id": result.usu_id})
+    res.json({"mensagem": "Olá, seja bem vindo "+result.nome, "id": result.cpf})
   else
     res.json({"mensagem":"Usuário Inválido"})
 
