@@ -6,7 +6,9 @@ const AtualizaUsuario = ({navigation, route}) =>{
   const[number,onChangeNumber] = React.useState('');*/
 
   const [cpf, setCpf] = useState('');
+  const [fk_plano_saude_id_plano_saude, setfk_plano_saude_id_plano_saude] = useState('');
   const [nome, setNome] = useState('');
+  const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [endereco, setEndereco] = useState('');
 
@@ -21,8 +23,12 @@ const AtualizaUsuario = ({navigation, route}) =>{
       .then(res => res.json())
       .then(resJson => {
         console.log(resJson);
-        setNome(resJson[0].usu_nome);
-        setEmail(resJson[0].usu_email);
+        setCpf(resJson[0].cpf);
+        setfk_plano_saude_id_plano_saude(resJson[0].fk_plano_saude_id_plano_saude);
+        setNome(resJson[0].nome);
+        setTelefone(resJson[0].telefone);
+        setEmail(resJson[0].email);
+        setEndereco(resJson[0].endereco);
     })
     .catch(e => console.log(e));
     }
@@ -75,11 +81,15 @@ const AtualizaUsuario = ({navigation, route}) =>{
     <View>
     <TextInput style={styles.input} value={cpf} placeholder="CPF"
     onChangeText={(event)=> setCpf(event)} />
+    <TextInput style={styles.input} value={fk_plano_saude_id_plano_saude} placeholder="Plano de saúde"
+    onChangeText={(event)=> setfk_plano_saude_id_plano_saude(event)} />
     <TextInput style={styles.input} value={nome} placeholder="Nome"
     onChangeText={(event)=> setNome(event)} />
+    <TextInput style={styles.input} value={telefone} placeholder="Telefone" 
+    onChangeText={(event)=> setTelefone(event)} />
     <TextInput style={styles.input} value={email} placeholder="E-mail" 
     onChangeText={(event)=> setEmail(event)} />
-    <TextInput style={styles.input} placeholder="Endereco" 
+    <TextInput style={styles.input} value={endereco} placeholder="Endereco" 
     onChangeText={(event)=> setEndereco(event)}  />
     
 
@@ -117,3 +127,4 @@ const styles = StyleSheet.create({
 });
 
 export default AtualizaUsuario;
+
